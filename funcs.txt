@@ -1,0 +1,58 @@
+def play_back(actions, window_title, repetitions):
+    focus_window(window_title)
+    key_listener2.start()
+    for t in range(repetitions):
+        if stop:
+            break
+        print(t)
+        i = 0
+        for action, pos in actions:
+            time.sleep(time_stamps[i])
+            mouse_pos = autoit.mouse_get_pos() # back to user position
+            if stop == False:
+                if action == 'click':
+                    autoit.mouse_move(pos[0], pos[1], speed=0)
+                    lock = 0.0
+                    start_time = 0.0
+                    autoit.mouse_move(pos[0], pos[1], speed=0)
+                    while lock < 0.25:
+                        autoit.mouse_move(pos[0], pos[1], speed=0)
+                        start_time = time.time()
+                        print(f"lock: {lock}")
+                        autoit.mouse_move(pos[0], pos[1], speed=0)
+                        print(f"start: {start_time}")
+                        autoit.mouse_move(pos[0], pos[1], speed=0)
+                        autoit.mouse_click('left', pos[0], pos[1])
+                        lock += time.time() - start_time  # Increment lock based on elapsed time
+                        
+                    print(f"Clicked at {pos}")
+                autoit.mouse_move(mouse_pos[0], mouse_pos[1], speed=0) # back to user position
+                i += 1
+        time.sleep(time_stamps[i])
+    forget_all(root)
+    main()
+
+
+
+def play_back(actions, window_title, repetitions):
+    focus_window(window_title)
+    key_listener2.start()
+    for t in range(repetitions):
+        if stop:
+            break
+        print(t)
+        i = 0
+        for action, pos in actions:
+            time.sleep(time_stamps[i])
+            mouse_pos = autoit.mouse_get_pos() # back to user position
+            if stop == False:
+                if action == 'click':
+                    autoit.mouse_move(pos[0], pos[1], speed=0)
+                    time.sleep(0.08)
+                    autoit.mouse_click('left', pos[0], pos[1])
+                    print(f"Clicked at {pos}")
+                autoit.mouse_move(mouse_pos[0], mouse_pos[1], speed=0) # back to user position
+                i += 1
+        time.sleep(time_stamps[i])
+    forget_all(root)
+    main()
